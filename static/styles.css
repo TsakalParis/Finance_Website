@@ -1,0 +1,22 @@
+table.dataframe, .dataframe th, .dataframe td {
+  border: none;
+  border-bottom: 1px solid #6c757d;
+  border-collapse: collapse;
+  text-align:left;
+  padding: 10px;
+  margin: 0 auto;
+  width: 80%;
+  font-size: 0.9em;
+  height: 50px;
+}
+
+.dataframe th {
+    background-color: #000000;
+    color: white;
+    height: 50px;
+}
+
+tr:nth-child(odd)		{ background-color: #343a40; }
+tr:nth-child(even)	{ background-color: #343a40; }
+
+tr:hover            { background-color: #455d7a;}

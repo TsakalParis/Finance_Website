@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootswatch CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css" />
+
+    <title>MoData Finance</title>
+  </head>
+  <body>
+    <h1 class="text-center">Search Stocks</h1>
+    <div class="form-inline justify-content-center">
+      <form class="form-inline" method="POST" onsubmit="return toggleResults()"> 
+        <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#infoModal">
+          Info
+        </button>
+        <div class="form-group mb-2">
+          <label for="input-ticker1" class="sr-only">Ticker 1</label>
+          <input type="text" class="form-control" name="input-ticker1" placeholder="Ticker 1 (e.g. TSLA)" maxlength="5" value="">
+        </div>
+        <div class="form-group mb-2">
+          <label for="input-ticker2" class="sr-only">Ticker 2</label>
+          <input type="text" class="form-control" name="input-ticker2" placeholder="Ticker 2 (e.g. AMZN)" maxlength="5" value="">
+        </div>
+        <div class="form-group mb-2">
+          <label for="input-start-date" class="sr-only">Start Date</label>
+          <input type="text" class="form-control" name="input-start-date" placeholder="Start (e.g. 2021-01-01)" maxlength="10" value="">
+        </div>
+        <div class="form-group mb-2">
+          <label for="input-end-date" class="sr-only">End Date</label>
+          <input type="text" class="form-control" name="input-end-date" placeholder="End (e.g. 2021-12-31)" maxlength="10" value="">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+      </form>
+    </div>
+    {% if condition %}
+    <div class="alert alert-danger" role="alert">
+      {{ result }}
+    </div>
+    {% else %}
+    
+      {% for table in results %}
+        <h2>{{titles[loop.index]}}</h2>
+        {{ table|safe }}
+      {% endfor %}
+
+    {% endif %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Info</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            This web application allows you to search for stock information by entering ticker symbols, 
+            a start date, and an end date.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.6/dist/umd/popper.min.js" integrity="sha384-Q2XUz0G1C7gZ6WpMV7BP1zG37u6oJZG5r5v5X+6NpJjRbi1wE8/vNl5J3/3c2ZnW" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
